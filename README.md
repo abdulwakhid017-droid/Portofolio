@@ -1,201 +1,750 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Nama Anda] - UI/UX Designer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { 'sans': ['Inter', 'sans-serif'] },
-                    colors: {
-                        skyblue: {
-                            50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc',
-                            400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1',
-                            800: '#075985', 900: '#0c4a6e', 950: '#082f49'
-                        }
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'fadeInUp': 'fadeInUp 1s ease-out',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        @keyframes float {
-            0%, 100% { transform: translate3d(0,0,0); }
-            50% { transform: translate3d(0,-10px,0); }
-        }
-        @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        .filter-btn.active { 
-            background: linear-gradient(to right, #0ea5e9, #0284c7) !important; 
-            color: white !important; 
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Design Grafis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --card: rgba(255,255,255,0.08);
+      --line: rgba(255,255,255,0.12);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --primary: #38bdf8;
+      --secondary: #a78bfa;
+      --accent: #f59e0b;
+      --success: #22c55e;
+      --shadow: 0 20px 50px rgba(0,0,0,0.28);
+      --radius: 24px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(167,139,250,0.18), transparent 28%),
+        linear-gradient(135deg, #020617 0%, #0f172a 48%, #111827 100%);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 680px;
+      margin-bottom: 38px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+      color: #e2e8f0;
+      font-size: 0.92rem;
+      backdrop-filter: blur(12px);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(2,6,23,0.7);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 76px;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #e2e8f0;
+      font-size: 0.96rem;
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 14px;
+      font-weight: 600;
+      transition: 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.06);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--line);
+      color: #fff;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .hero {
+      min-height: calc(100vh - 76px);
+      display: flex;
+      align-items: center;
+      padding: 64px 0 40px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 5vw, 4.5rem);
+      line-height: 1.12;
+      margin: 18px 0 18px;
+      font-weight: 800;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #7dd3fc, #c4b5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 720px;
+      font-size: 1.02rem;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .hero-highlights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .highlight-card,
+    .glass-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .highlight-card {
+      padding: 18px;
+    }
+
+    .highlight-card strong {
+      display: block;
+      font-size: 1.35rem;
+      margin-bottom: 6px;
+    }
+
+    .highlight-card span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .profile-card {
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      top: -70px;
+      right: -40px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56,189,248,0.3), transparent 70%);
+    }
+
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: grid;
+      place-items: center;
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow: 0 16px 34px rgba(56,189,248,0.28);
+      border: 4px solid rgba(255,255,255,0.14);
+    }
+
+    .profile-card h3 {
+      text-align: center;
+      font-size: 1.45rem;
+      margin-bottom: 6px;
+    }
+
+    .profile-card .role {
+      text-align: center;
+      color: #cbd5e1;
+      margin-bottom: 22px;
+    }
+
+    .bio-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .bio-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.95rem;
+    }
+
+    .bio-item span:first-child {
+      color: var(--muted);
+    }
+
+    .about-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .content-card {
+      padding: 30px;
+    }
+
+    .content-card p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .tag-list,
+    .service-list,
+    .tool-list,
+    .portfolio-grid,
+    .experience-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .tool-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .tool-item,
+    .service-item,
+    .experience-item,
+    .portfolio-item,
+    .contact-card {
+      padding: 22px;
+      border-radius: 22px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+      transition: 0.3s ease;
+    }
+
+    .tool-item:hover,
+    .service-item:hover,
+    .experience-item:hover,
+    .portfolio-item:hover,
+    .contact-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56,189,248,0.35);
+    }
+
+    .tool-item h4,
+    .service-item h4,
+    .experience-item h4,
+    .portfolio-item h4,
+    .contact-card h4 {
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+    }
+
+    .tool-item p,
+    .service-item p,
+    .experience-item p,
+    .portfolio-item p,
+    .contact-card p,
+    .contact-card a {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .service-list,
+    .portfolio-grid,
+    .experience-grid,
+    .contact-grid.cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .portfolio-thumb {
+      height: 180px;
+      border-radius: 16px;
+      margin-bottom: 18px;
+      background:
+        linear-gradient(135deg, rgba(56,189,248,0.2), rgba(167,139,250,0.22)),
+        rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: grid;
+      place-items: center;
+      font-size: 0.95rem;
+      color: #dbeafe;
+      text-align: center;
+      padding: 14px;
+    }
+
+    .experience-item .year {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: #fff;
+      background: rgba(34,197,94,0.14);
+      border: 1px solid rgba(34,197,94,0.24);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+
+    .cta {
+      text-align: center;
+      padding: 38px;
+    }
+
+    .cta p {
+      color: var(--muted);
+      max-width: 680px;
+      margin: 14px auto 26px;
+    }
+
+    footer {
+      padding: 28px 0 42px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .small-text {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tool-list,
+      .service-list,
+      .portfolio-grid,
+      .experience-grid,
+      .contact-grid.cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-highlights {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      nav {
+        flex-direction: column;
+        gap: 14px;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        justify-content: center;
+        gap: 14px;
+      }
+
+      .tool-list,
+      .service-list,
+      .portfolio-grid,
+      .experience-grid,
+      .contact-grid.cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 34px;
+      }
+
+      .section {
+        padding: 74px 0;
+      }
+    }
+  </style>
 </head>
-<body class="bg-gradient-to-br from-skyblue-50 via-white to-skyblue-100 text-slate-900 overflow-x-hidden">
-
-    <!-- Mobile Navigation -->
-    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-skyblue-200/50 shadow-sm md:relative md:bg-transparent">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div class="flex justify-between items-center">
-                <a href="#" class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-skyblue-500 to-skyblue-600 bg-clip-text text-transparent">
-                    [Nama Anda]
-                </a>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="hover:text-skyblue-500 font-medium transition-all duration-300 py-2">Home</a>
-                    <a href="#about" class="hover:text-skyblue-500 font-medium transition-all duration-300 py-2">About</a>
-                    <a href="#works" class="hover:text-skyblue-500 font-medium transition-all duration-300 py-2">Works</a>
-                    <a href="#contact" class="hover:text-skyblue-500 font-medium transition-all duration-300 py-2">Contact</a>
-                </div>
-                
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-skyblue-600 p-2">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#home" class="logo">Porto<span>Design</span></a>
+        <div class="nav-links">
+          <a href="#tentang">Tentang</a>
+          <a href="#skill">Skill</a>
+          <a href="#layanan">Layanan</a>
+          <a href="#pengalaman">Pengalaman</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#kontak">Kontak</a>
         </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white/95 backdrop-blur-md border-t border-skyblue-200 shadow-lg">
-            <div class="px-4 py-6 space-y-4">
-                <a href="#home" class="block hover:text-skyblue-500 font-medium transition-all duration-300 py-2">Home</a>
-                <a href="#about" class="block hover:text-skyblue-500 font-medium transition-all duration-300 py-2">About</a>
-                <a href="#works" class="block hover:text-skyblue-500 font-medium transition-all duration-300 py-2">Works</a>
-                <a href="#contact" class="block hover:text-skyblue-500 font-medium transition-all duration-300 py-2">Contact</a>
-            </div>
-        </div>
-    </nav>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Hero Section - Fully Responsive -->
-    <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-4 sm:px-6 lg:px-8 pb-20 lg:pb-0 overflow-hidden">
-        <div class="w-full max-w-4xl mx-auto text-center animate-fadeInUp px-4">
-            <div class="inline-block p-3 sm:p-4 bg-gradient-to-r from-skyblue-100 to-skyblue-200 rounded-2xl backdrop-blur-sm border border-skyblue-300/50 mb-6 sm:mb-8 animate-float max-w-max mx-auto">
-                <span class="text-xs sm:text-sm bg-gradient-to-r from-skyblue-600 to-skyblue-700 bg-clip-text text-transparent font-semibold px-2">UI/UX Designer</span>
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge">Desain Grafis Profesional • 3 Tahun Pengalaman</div>
+          <h1>Halo, saya <span>Nama Anda</span><br>Graphic Designer yang fokus pada visual yang rapi, menarik, dan berkarakter.</h1>
+          <p>
+            Saya berpengalaman selama 3 tahun dalam bidang desain grafis. Saya membantu pembuatan berbagai kebutuhan visual seperti buku memory angkatan sekolah, poster, banner, animasi logo, feed Instagram, dan materi promosi lainnya dengan tampilan yang estetik dan komunikatif.
+          </p>
+          <div class="hero-actions">
+            <a href="#portfolio" class="btn btn-primary">Lihat Portfolio</a>
+            <a href="#kontak" class="btn btn-outline">Hubungi Saya</a>
+          </div>
+          <div class="hero-highlights">
+            <div class="highlight-card">
+              <strong>3 Tahun</strong>
+              <span>Pengalaman desain grafis</span>
             </div>
-            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-slate-900 via-skyblue-600 to-skyblue-700 bg-clip-text text-transparent mb-4 sm:mb-6 leading-tight">
-                Membuat <span class="bg-gradient-to-r from-skyblue-500 to-skyblue-600">Pengalaman</span><br class="hidden sm:block">
-                Digital yang <span class="bg-gradient-to-r from-skyblue-400 to-skyblue-500">Menyegarkan</span>
-            </h1>
-            <p class="text-lg sm:text-xl md:text-2xl text-slate-600 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed px-2">
-                Saya merancang interface yang clean, modern, dan memberikan pengalaman user yang luar biasa.
+            <div class="highlight-card">
+              <strong>6 Tools</strong>
+              <span>Corel, Photoshop, CapCut, InDesign, Lightroom, Canva</span>
+            </div>
+            <div class="highlight-card">
+              <strong>Multi Project</strong>
+              <span>Buku memory, poster, banner, animasi logo, feed IG, dan lainnya</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card profile-card">
+          <div class="avatar">DA</div>
+          <h3>Nama Anda</h3>
+          <div class="role">Graphic Designer</div>
+          <div class="bio-list">
+            <div class="bio-item"><span>Tempat, Tanggal Lahir</span><span>Kota Anda, 00-00-0000</span></div>
+            <div class="bio-item"><span>Alamat</span><span>Kota / Kabupaten Anda</span></div>
+            <div class="bio-item"><span>Email</span><span>emailkamu@gmail.com</span></div>
+            <div class="bio-item"><span>No. HP</span><span>08xxxxxxxxxx</span></div>
+            <div class="bio-item"><span>Pendidikan</span><span>Tambahkan pendidikan terakhir</span></div>
+            <div class="bio-item"><span>Fokus</span><span>Branding, Konten Visual, Desain Promosi</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tentang">
+      <div class="container">
+        <h2 class="section-title">Perkenalan & Biodata Diri</h2>
+        <p class="section-subtitle">Bagian ini menampilkan ringkasan profil singkat yang memperkenalkan siapa Anda, apa yang Anda kerjakan, dan nilai yang Anda berikan kepada klien.</p>
+
+        <div class="about-grid">
+          <div class="glass-card content-card">
+            <h3 style="margin-bottom:16px; font-size:1.35rem;">Tentang Saya</h3>
+            <p>
+              Saya adalah seorang graphic designer yang menyukai visual yang bersih, menarik, dan tepat sasaran. Saya terbiasa mengerjakan kebutuhan desain untuk sekolah, organisasi, UMKM, dan personal branding.
             </p>
-            <div class="flex flex-col xs:flex-row gap-4 sm:gap-6 justify-center items-center px-2">
-                <a href="#works" class="group w-full xs:w-auto bg-gradient-to-r from-skyblue-500 to-skyblue-600 hover:from-skyblue-600 hover:to-skyblue-700 px-8 sm:px-12 py-4 rounded-2xl font-semibold text-lg text-white shadow-2xl hover:shadow-skyblue-500/25 transform hover:-translate-y-1 transition-all duration-500 flex items-center justify-center gap-3 min-h-[56px]">
-                    <i class="fas fa-arrow-right text-sm"></i>
-                    <span>Lihat Karya</span>
-                </a>
-                <a href="#contact" class="w-full xs:w-auto px-8 sm:px-12 py-4 border-2 border-skyblue-200 hover:border-skyblue-400 rounded-2xl font-semibold text-lg hover:text-skyblue-600 transition-all duration-300 backdrop-blur-sm bg-white/80 hover:bg-white shadow-lg min-h-[56px] flex items-center justify-center">
-                    <i class="fas fa-paper-plane mr-2"></i>Hubungi
-                </a>
+            <p>
+              Selama 3 tahun terakhir, saya mengembangkan kemampuan desain untuk kebutuhan cetak dan digital. Saya selalu berusaha menghasilkan karya yang bukan hanya bagus secara visual, tetapi juga efektif dalam menyampaikan pesan.
+            </p>
+            <p>
+              Saya siap membantu klien yang membutuhkan desain profesional dengan proses kerja yang komunikatif, cepat, dan hasil yang rapi.
+            </p>
+          </div>
+
+          <div class="glass-card content-card">
+            <h3 style="margin-bottom:16px; font-size:1.35rem;">Biodata Singkat</h3>
+            <div class="bio-list">
+              <div class="bio-item"><span>Nama Lengkap</span><span>Nama Anda</span></div>
+              <div class="bio-item"><span>Profesi</span><span>Graphic Designer</span></div>
+              <div class="bio-item"><span>Pengalaman</span><span>3 Tahun</span></div>
+              <div class="bio-item"><span>Domisili</span><span>Isi domisili Anda</span></div>
+              <div class="bio-item"><span>Status</span><span>Freelance / Open Project</span></div>
+              <div class="bio-item"><span>Spesialisasi</span><span>Desain Visual Digital & Cetak</span></div>
             </div>
+          </div>
         </div>
-        
-        <!-- Responsive Floating Elements -->
-        <div class="absolute top-1/4 lg:top-1/2 right-4 sm:right-10 w-32 sm:w-48 lg:w-72 h-32 sm:h-48 lg:h-72 bg-gradient-to-r from-skyblue-200/30 to-skyblue-300/30 rounded-full blur-xl sm:blur-2xl lg:blur-3xl animate-pulse hidden lg:block"></div>
-        <div class="absolute bottom-10 sm:bottom-20 left-4 sm:left-10 w-40 sm:w-64 lg:w-96 h-40 sm:h-64 lg:h-96 bg-gradient-to-r from-skyblue-300/20 to-skyblue-400/20 rounded-full blur-xl sm:blur-2xl lg:blur-3xl animate-pulse delay-1000 hidden lg:block"></div>
+      </div>
     </section>
 
-    <!-- About Section - Responsive -->
-    <section id="about" class="py-20 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-white/50">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16 sm:mb-20 lg:mb-24">
-                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-900 to-skyblue-600 bg-clip-text text-transparent mb-4 sm:mb-6 leading-tight">
-                    Tentang Saya
-                </h2>
-                <div class="w-20 sm:w-24 h-1 bg-gradient-to-r from-skyblue-400 to-skyblue-500 mx-auto rounded-full"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                <div class="relative mx-auto w-64 sm:w-80 lg:w-96 h-64 sm:h-80 lg:h-96">
-                    <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-skyblue-100 to-skyblue-200 rounded-3xl backdrop-blur-xl border border-skyblue-300/50 p-4 sm:p-6 lg:p-8 animate-float">
-                        <div class="w-full h-full bg-white rounded-2xl p-4 sm:p-6 flex items-center justify-center shadow-2xl border border-skyblue-100">
-                            <i class="fas fa-user text-4xl sm:text-6xl lg:text-8xl text-skyblue-500"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="space-y-6 lg:space-y-8 text-left lg:text-left">
-                    <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 sm:mb-6">Creative Designer</h3>
-                    <p class="text-lg sm:text-xl text-slate-600 leading-relaxed">
-                        Dengan pengalaman 5+ tahun di UI/UX Design, saya menciptakan produk digital yang tidak hanya 
-                        indah secara visual tapi juga memberikan pengalaman user yang optimal.
-                    </p>
-                    <div class="grid grid-cols-2 gap-6 pt-6 sm:pt-8 border-t border-skyblue-200">
-                        <div>
-                            <div class="text-2xl sm:text-3xl lg:text-3xl font-bold text-skyblue-600 mb-1 sm:mb-2">50+</div>
-                            <div class="text-slate-600 text-sm sm:text-base">Projects</div>
-                        </div>
-                        <div>
-                            <div class="text-2xl sm:text-3xl lg:text-3xl font-bold text-skyblue-500 mb-1 sm:mb-2">25+</div>
-                            <div class="text-slate-600 text-sm sm:text-base">Clients</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="section" id="skill">
+      <div class="container">
+        <h2 class="section-title">Skill & Tools</h2>
+        <p class="section-subtitle">Berikut beberapa software dan tools yang saya kuasai untuk mendukung berbagai kebutuhan desain visual.</p>
+
+        <div class="tool-list">
+          <div class="tool-item">
+            <h4>CorelDRAW</h4>
+            <p>Membuat desain vektor, banner, brosur, layout cetak, dan kebutuhan visual promosi dengan hasil rapi.</p>
+          </div>
+          <div class="tool-item">
+            <h4>Adobe Photoshop</h4>
+            <p>Editing foto, manipulasi visual, poster promosi, desain feed, dan kebutuhan branding digital.</p>
+          </div>
+          <div class="tool-item">
+            <h4>CapCut</h4>
+            <p>Mengedit video pendek, animasi sederhana, motion content, dan kebutuhan konten media sosial.</p>
+          </div>
+          <div class="tool-item">
+            <h4>Adobe InDesign</h4>
+            <p>Menyusun layout buku, majalah, company profile, dan buku memory angkatan sekolah secara profesional.</p>
+          </div>
+          <div class="tool-item">
+            <h4>Adobe Lightroom</h4>
+            <p>Mengatur tone warna, pencahayaan, dan kualitas visual foto agar terlihat lebih menarik dan konsisten.</p>
+          </div>
+          <div class="tool-item">
+            <h4>Canva</h4>
+            <p>Membuat desain cepat, presentasi, feed Instagram, poster, dan materi promosi dengan workflow efisien.</p>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Works Section - Perfect Responsive Grid -->
-    <section id="works" class="py-20 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-skyblue-50 to-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 sm:mb-20 lg:mb-24">
-                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-900 to-skyblue-600 bg-clip-text text-transparent mb-4 sm:mb-6 leading-tight">
-                    Portfolio Terbaik
-                </h2>
-                <div class="w-20 sm:w-24 h-1 bg-gradient-to-r from-skyblue-400 to-skyblue-500 mx-auto rounded-full"></div>
+    <section class="section" id="layanan">
+      <div class="container">
+        <h2 class="section-title">Layanan yang Saya Terima</h2>
+        <p class="section-subtitle">Saya menerima berbagai jasa desain untuk kebutuhan sekolah, bisnis, organisasi, maupun personal branding.</p>
+
+        <div class="service-list">
+          <div class="service-item">
+            <h4>Buku Memory Angkatan Sekolah</h4>
+            <p>Desain layout buku kenangan sekolah yang rapi, elegan, dan berkesan untuk siswa, guru, dan panitia.</p>
+          </div>
+          <div class="service-item">
+            <h4>Poster & Banner</h4>
+            <p>Pembuatan poster promosi, banner acara, publikasi kegiatan, dan media visual untuk berbagai kebutuhan.</p>
+          </div>
+          <div class="service-item">
+            <h4>Animasi Logo</h4>
+            <p>Logo animation sederhana untuk opening video, konten promosi, presentasi, dan identitas brand.</p>
+          </div>
+          <div class="service-item">
+            <h4>Feed Instagram</h4>
+            <p>Desain feed IG yang konsisten, menarik, dan sesuai karakter brand agar tampilan akun lebih profesional.</p>
+          </div>
+          <div class="service-item">
+            <h4>Konten Promosi Digital</h4>
+            <p>Desain flyer, brosur digital, story Instagram, thumbnail, dan kebutuhan promosi online lainnya.</p>
+          </div>
+          <div class="service-item">
+            <h4>Desain Lainnya</h4>
+            <p>Menerima berbagai kebutuhan desain lainnya sesuai brief dan kebutuhan proyek Anda.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pengalaman">
+      <div class="container">
+        <h2 class="section-title">Pengalaman Desain 3 Tahun</h2>
+        <p class="section-subtitle">Perjalanan saya dalam dunia desain grafis berfokus pada pengembangan kualitas visual, ketelitian layout, dan komunikasi desain yang efektif.</p>
+
+        <div class="experience-grid">
+          <div class="experience-item">
+            <div class="year">Tahun 1</div>
+            <h4>Memulai dari Desain Dasar dan Konten Sosial Media</h4>
+            <p>Saya mulai dari pembuatan poster, feed Instagram, dan desain promosi sederhana. Pada tahap ini saya memperkuat dasar komposisi, warna, tipografi, dan layout.</p>
+          </div>
+          <div class="experience-item">
+            <div class="year">Tahun 2</div>
+            <h4>Mengerjakan Proyek Sekolah dan Organisasi</h4>
+            <p>Saya mulai menangani proyek yang lebih kompleks seperti banner kegiatan, publikasi acara, dan layout buku memory angkatan dengan kebutuhan visual yang lebih detail.</p>
+          </div>
+          <div class="experience-item">
+            <div class="year">Tahun 3</div>
+            <h4>Fokus pada Hasil Profesional dan Branding Visual</h4>
+            <p>Saya memperluas layanan ke desain branding, animasi logo sederhana, konten promosi digital, dan visual yang lebih matang untuk kebutuhan klien yang beragam.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="portfolio">
+      <div class="container">
+        <h2 class="section-title">Contoh Portfolio</h2>
+        <p class="section-subtitle">Bagian ini bisa diisi hasil karya terbaik Anda. Silakan ganti isi dan gambar sesuai project yang pernah Anda kerjakan.</p>
+
+        <div class="portfolio-grid">
+          <div class="portfolio-item">
+            <div class="portfolio-thumb">Preview Project Buku Memory Angkatan</div>
+            <h4>Buku Memory Angkatan</h4>
+            <p>Layout halaman yang rapi, modern, dan nyaman dibaca untuk dokumentasi angkatan sekolah.</p>
+          </div>
+          <div class="portfolio-item">
+            <div class="portfolio-thumb">Preview Poster Event / Promosi</div>
+            <h4>Poster Promosi</h4>
+            <p>Desain poster yang kuat secara visual dan mampu menyampaikan informasi utama dengan jelas.</p>
+          </div>
+          <div class="portfolio-item">
+            <div class="portfolio-thumb">Preview Feed Instagram Brand</div>
+            <h4>Feed Instagram</h4>
+            <p>Konsep feed yang konsisten, estetik, dan sesuai identitas visual akun atau brand.</p>
+          </div>
+          <div class="portfolio-item">
+            <div class="portfolio-thumb">Preview Banner Kegiatan</div>
+            <h4>Banner Acara</h4>
+            <p>Banner kegiatan dengan komposisi visual yang informatif dan tetap menarik dilihat.</p>
+          </div>
+          <div class="portfolio-item">
+            <div class="portfolio-thumb">Preview Animasi Logo</div>
+            <h4>Animasi Logo</h4>
+            <p>Animasi logo sederhana untuk kebutuhan pembuka video, reels, atau presentasi brand.</p>
+          </div>
+          <div class="portfolio-item">
+            <div class="portfolio-thumb">Preview Desain Promosi Lainnya</div>
+            <h4>Desain Lainnya</h4>
+            <p>Berbagai kebutuhan desain digital dan cetak sesuai brief klien dan target visual yang diinginkan.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kontak">
+      <div class="container">
+        <div class="glass-card cta">
+          <h2 class="section-title" style="margin-bottom:0;">Siap Bekerja Sama?</h2>
+          <p>
+            Saya terbuka untuk proyek desain grafis freelance maupun kolaborasi jangka pendek dan jangka panjang. Jika Anda membutuhkan desain yang menarik, rapi, dan profesional, silakan hubungi saya.
+          </p>
+          <a href="mailto:emailkamu@gmail.com" class="btn btn-primary">Kirim Email</a>
+        </div>
+
+        <div class="section" style="padding-bottom:0;">
+          <h2 class="section-title">Kontak</h2>
+          <p class="section-subtitle">Silakan ganti data di bawah ini dengan informasi kontak asli Anda.</p>
+          <div class="contact-grid cards">
+            <div class="contact-card">
+              <h4>Email</h4>
+              <a href="mailto:emailkamu@gmail.com">emailkamu@gmail.com</a>
             </div>
-            
-            <!-- Responsive Filter Buttons -->
-            <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12 sm:mb-16 px-2">
-                <button class="filter-btn active px-6 sm:px-8 py-3 bg-gradient-to-r from-skyblue-500 to-skyblue-600 text-white text-sm sm:text-base rounded-xl font-semibold shadow-lg hover:shadow-skyblue-500/25 transition-all duration-300 min-w-[100px]">All</button>
-                <button class="filter-btn px-6 sm:px-8 py-3 bg-white hover:bg-skyblue-50 border border-skyblue-200 hover:border-skyblue-400 rounded-xl font-semibold shadow-sm hover:shadow-md transition-all duration-300 text-sm sm:text-base text-slate-700 hover:text-skyblue-600 min-w-[120px]">Web</button>
-                <button class="filter-btn px-6 sm:px-8 py-3 bg-white hover:bg-skyblue-50 border border-skyblue-200 hover:border-skyblue-400 rounded-xl font-semibold shadow-sm hover:shadow-md transition-all duration-300 text-sm sm:text-base text-slate-700 hover:text-skyblue-600 min-w-[120px]">Mobile</button>
-                <button class="filter-btn px-6 sm:px-8 py-3 bg-white hover:bg-skyblue-50 border border-skyblue-200 hover:border-skyblue-400 rounded-xl font-semibold shadow-sm hover:shadow-md transition-all duration-300 text-sm sm:text-base text-slate-700 hover:text-skyblue-600 min-w-[120px]">Branding</button>
+            <div class="contact-card">
+              <h4>WhatsApp</h4>
+              <a href="https://wa.me/6281234567890" target="_blank">+62 812-3456-7890</a>
             </div>
+            <div class="contact-card">
+              <h4>Instagram</h4>
+              <a href="#" target="_blank">@usernameanda</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-            <!-- Responsive Works Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-2">
-                <!-- Project Card 1 -->
-                <a href="#" class="group relative overflow-hidden rounded-3xl bg-white hover:bg-gradient-to-br hover:from-skyblue-500/5 border border-skyblue-200 hover:border-skyblue-400 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] sm:hover:scale-105 hover:-translate-y-2 block w-full">
-                    <div class="h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-skyblue-200/50 to-skyblue-300/30 group-hover:blur-sm transition-all duration-500"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 backdrop-blur-sm"></div>
-                    <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6">
-                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mb-1 sm:mb-2 group-hover:translate-x-2 transition-transform duration-300 leading-tight">E-Commerce App</h3>
-                        <p class="text-slate-600 text-sm sm:text-lg mb-3 sm:mb-4 group-hover:translate-x-2 transition-transform duration-300 leading-relaxed">Redesign aplikasi belanja</p>
-                        <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200">
-                            <div class="w-2 h-2 sm:w-3 sm:h-3 bg-skyblue-500 rounded-full animate-pulse"></div>
-                            <div class="w-2 h-2 sm:w-3 sm:h-3 bg-skyblue-400 rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
-                            <div class="w-2 h-2 sm:w-3 sm:h-3 bg-skyblue-500 rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Project Card 2 -->
-                <a href="#" class="group relative overflow-hidden rounded-3xl bg-white hover:bg-gradient-to-br hover:from-skyblue-500/5 border border-skyblue-200 hover:border-skyblue-400 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] sm:hover:scale-105 hover:-translate-y-2 block w-full">
-                    <div class="h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-skyblue-300/50 to-skyblue-400/30 group-hover:blur-sm transition-all duration-500"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 backdrop-blur-sm"></div>
-                    <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6">
-                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mb-1 sm:mb-2 group-hover:translate-x-2 transition-transform duration-300 leading-tight">Fintech Dashboard</h3>
-                        <p class="text-slate-600 text-sm sm:text-lg mb-3 sm:mb-4 group-hover:translate-x-2 transition-transform duration-300 leading-relaxed">Dashboard keuangan modern</p>
-                        <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200">
-                            <div class="w-2 h-2 sm:w-3 sm:h-3 bg-skyblue-500 rounded-full animate-pulse"></div>
-                            <div class="w-2 h-2 sm:w-3 sm:h-3 bg-skyblue-400 rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
-                            <div class="w-2 h-2 sm:w-3 sm:h-3 bg-skyblue-500 rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Project Card 3 -->
-                <a href="#" class="group relative overflow-hidden rounded-3xl bg-white hover:bg-gradient-to-br hover:from-skyblue-500/5 border border-skyblue-200 hover:border-skyblue-400 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale
+  <footer>
+    <div class="container">
+      <p>© 2026 Portfolio Design Grafis • Dibuat dengan HTML & CSS</p>
+      <p class="small-text">Silakan ubah nama, biodata, kontak, dan isi portfolio sesuai kebutuhan Anda.</p>
+    </div>
+  </footer>
+</body>
+</html>
