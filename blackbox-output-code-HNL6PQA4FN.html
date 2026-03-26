@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+
     :root {
       --bg: #0f172a;
       --bg-soft: #111827;
@@ -27,13 +28,16 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      min-width: 0;
     }
 
     html {
       scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
     }
 
     body {
+      min-width: 320px;
       font-family: 'Poppins', sans-serif;
       background:
         radial-gradient(circle at top left, rgba(56,189,248,0.18), transparent 30%),
@@ -42,6 +46,11 @@
       color: var(--text);
       line-height: 1.7;
       overflow-x: hidden;
+      word-wrap: break-word;
+    }
+
+    body.menu-open {
+      overflow: hidden;
     }
 
     a {
@@ -49,30 +58,40 @@
       text-decoration: none;
     }
 
-    img {
+    img,
+    video,
+    svg,
+    canvas {
       max-width: 100%;
+      height: auto;
       display: block;
     }
 
+    section[id] {
+      scroll-margin-top: 110px;
+    }
+
     .container {
-      width: min(1120px, 92%);
+      width: min(1120px, calc(100% - 32px));
       margin: 0 auto;
     }
 
     .section {
-      padding: 90px 0;
+      padding: clamp(64px, 8vw, 96px) 0;
     }
 
     .section-title {
       font-size: clamp(1.8rem, 3vw, 2.6rem);
       font-weight: 800;
       margin-bottom: 14px;
+      line-height: 1.2;
     }
 
     .section-subtitle {
       color: var(--muted);
       max-width: 680px;
       margin-bottom: 38px;
+      font-size: clamp(0.96rem, 1.4vw, 1rem);
     }
 
     .badge {
@@ -86,6 +105,8 @@
       color: #e2e8f0;
       font-size: 0.92rem;
       backdrop-filter: blur(12px);
+      max-width: 100%;
+      flex-wrap: wrap;
     }
 
     header {
@@ -101,17 +122,48 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 20px;
       min-height: 76px;
+      position: relative;
     }
 
     .logo {
       font-size: 1.25rem;
       font-weight: 800;
       letter-spacing: 0.4px;
+      flex-shrink: 0;
     }
 
     .logo span {
       color: var(--primary);
+    }
+
+    .nav-toggle {
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      margin-left: auto;
+    }
+
+    .nav-toggle:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .nav-toggle span {
+      width: 20px;
+      height: 2px;
+      background: #fff;
+      border-radius: 999px;
+      display: block;
     }
 
     .nav-links {
@@ -119,12 +171,14 @@
       align-items: center;
       gap: 24px;
       flex-wrap: wrap;
+      margin-left: auto;
     }
 
     .nav-links a {
       color: #e2e8f0;
       font-size: 0.96rem;
       transition: 0.3s ease;
+      white-space: nowrap;
     }
 
     .nav-links a:hover {
@@ -142,6 +196,7 @@
       transition: 0.3s ease;
       border: none;
       cursor: pointer;
+      text-align: center;
     }
 
     .btn-primary {
@@ -166,16 +221,16 @@
     }
 
     .hero {
-      min-height: calc(100vh - 76px);
+      min-height: min(920px, calc(100vh - 76px));
       display: flex;
       align-items: center;
-      padding: 64px 0 40px;
+      padding: clamp(40px, 6vw, 64px) 0 40px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 36px;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+      gap: clamp(24px, 4vw, 36px);
       align-items: center;
     }
 
@@ -195,8 +250,8 @@
 
     .hero p {
       color: var(--muted);
-      max-width: 720px;
-      font-size: 1.02rem;
+      max-width: 62ch;
+      font-size: clamp(0.98rem, 1.5vw, 1.02rem);
       margin-bottom: 28px;
     }
 
@@ -209,7 +264,7 @@
 
     .hero-highlights {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 16px;
     }
 
@@ -217,7 +272,7 @@
     .glass-card {
       background: var(--card);
       border: 1px solid var(--line);
-      border-radius: var(--radius);
+      border-radius: clamp(18px, 4vw, var(--radius));
       backdrop-filter: blur(18px);
       box-shadow: var(--shadow);
     }
@@ -238,9 +293,10 @@
     }
 
     .profile-card {
-      padding: 28px;
+      padding: clamp(22px, 3vw, 28px);
       position: relative;
       overflow: hidden;
+      width: 100%;
     }
 
     .profile-card::before {
@@ -255,13 +311,13 @@
     }
 
     .avatar {
-      width: 140px;
-      height: 140px;
+      width: clamp(112px, 25vw, 140px);
+      height: clamp(112px, 25vw, 140px);
       border-radius: 50%;
       margin: 0 auto 20px;
       display: grid;
       place-items: center;
-      font-size: 2.4rem;
+      font-size: clamp(2rem, 4vw, 2.4rem);
       font-weight: 800;
       color: #fff;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -289,7 +345,9 @@
     .bio-item {
       display: flex;
       justify-content: space-between;
+      align-items: flex-start;
       gap: 12px;
+      flex-wrap: wrap;
       padding: 12px 14px;
       border-radius: 14px;
       background: rgba(255,255,255,0.05);
@@ -299,17 +357,23 @@
 
     .bio-item span:first-child {
       color: var(--muted);
+      flex: 1 1 160px;
+    }
+
+    .bio-item span:last-child {
+      flex: 1 1 220px;
+      text-align: right;
     }
 
     .about-grid,
     .contact-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 28px;
     }
 
     .content-card {
-      padding: 30px;
+      padding: clamp(22px, 3vw, 30px);
     }
 
     .content-card p {
@@ -326,8 +390,12 @@
       gap: 18px;
     }
 
-    .tool-list {
-      grid-template-columns: repeat(3, 1fr);
+    .tool-list,
+    .service-list,
+    .portfolio-grid,
+    .experience-grid,
+    .contact-grid.cards {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
 
     .tool-item,
@@ -369,17 +437,11 @@
     .contact-card a {
       color: var(--muted);
       font-size: 0.95rem;
-    }
-
-    .service-list,
-    .portfolio-grid,
-    .experience-grid,
-    .contact-grid.cards {
-      grid-template-columns: repeat(3, 1fr);
+      overflow-wrap: anywhere;
     }
 
     .portfolio-thumb {
-      height: 180px;
+      height: clamp(150px, 22vw, 180px);
       border-radius: 16px;
       margin-bottom: 18px;
       background:
@@ -408,7 +470,7 @@
 
     .cta {
       text-align: center;
-      padding: 38px;
+      padding: clamp(24px, 4vw, 38px);
     }
 
     .cta p {
@@ -429,54 +491,123 @@
       color: var(--muted);
     }
 
-    @media (max-width: 980px) {
+    @media (max-width: 1024px) {
+      .hero {
+        min-height: auto;
+      }
+
       .hero-grid,
       .about-grid,
       .contact-grid {
         grid-template-columns: 1fr;
       }
 
-      .tool-list,
-      .service-list,
-      .portfolio-grid,
-      .experience-grid,
-      .contact-grid.cards {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .hero-highlights {
-        grid-template-columns: 1fr;
+      .profile-card {
+        max-width: 720px;
+        margin: 0 auto;
       }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
       nav {
-        flex-direction: column;
-        gap: 14px;
-        padding: 16px 0;
+        min-height: 72px;
+        padding: 12px 0;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
       }
 
       .nav-links {
-        justify-content: center;
-        gap: 14px;
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 0;
+        right: 0;
+        display: grid;
+        gap: 8px;
+        padding: 16px;
+        background: rgba(2,6,23,0.96);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(16px);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-8px);
+        transition: 0.25s ease;
+        margin-left: 0;
       }
 
-      .tool-list,
-      .service-list,
-      .portfolio-grid,
-      .experience-grid,
-      .contact-grid.cards {
-        grid-template-columns: 1fr;
+      .nav-links[data-open="true"] {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .nav-links a {
+        padding: 12px 14px;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.03);
       }
 
       .hero {
-        padding-top: 34px;
+        padding-top: 32px;
       }
 
-      .section {
-        padding: 74px 0;
+      .hero-actions .btn {
+        width: 100%;
       }
     }
+
+    @media (max-width: 520px) {
+      .container {
+        width: min(1120px, calc(100% - 24px));
+      }
+
+      .section-subtitle,
+      .tool-item p,
+      .service-item p,
+      .experience-item p,
+      .portfolio-item p,
+      .contact-card p,
+      .contact-card a,
+      .hero p {
+        font-size: 0.95rem;
+      }
+
+      .bio-item {
+        padding: 12px;
+      }
+
+      .bio-item span:last-child {
+        text-align: left;
+        flex-basis: 100%;
+      }
+
+      .profile-card,
+      .content-card,
+      .tool-item,
+      .service-item,
+      .experience-item,
+      .portfolio-item,
+      .contact-card {
+        padding: 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -484,7 +615,12 @@
     <div class="container">
       <nav>
         <a href="#home" class="logo">Porto<span>Design</span></a>
-        <div class="nav-links">
+        <button class="nav-toggle" type="button" aria-label="Buka menu navigasi" aria-controls="nav-links" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-links" id="nav-links" data-open="false">
           <a href="#tentang">Tentang</a>
           <a href="#skill">Skill</a>
           <a href="#layanan">Layanan</a>
@@ -746,5 +882,38 @@
       <p class="small-text">Silakan ubah nama, biodata, kontak, dan isi portfolio sesuai kebutuhan Anda.</p>
     </div>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggle = document.querySelector('.nav-toggle');
+      const navLinks = document.querySelector('.nav-links');
+
+      if (!toggle || !navLinks) return;
+
+      function closeMenu() {
+        navLinks.setAttribute('data-open', 'false');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
+      }
+
+      toggle.addEventListener('click', function () {
+        const isOpen = navLinks.getAttribute('data-open') === 'true';
+        navLinks.setAttribute('data-open', String(!isOpen));
+        toggle.setAttribute('aria-expanded', String(!isOpen));
+        document.body.classList.toggle('menu-open', !isOpen);
+      });
+
+      navLinks.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 768) {
+          closeMenu();
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
